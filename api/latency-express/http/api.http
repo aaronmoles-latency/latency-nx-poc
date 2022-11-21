@@ -37,6 +37,12 @@ client.test("Request executed successfully", function() {
 
 ### POST /user
 POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+  "email": "a@a.com",
+  "password": "content"
+}
 
 > {%
 client.test("Request executed successfully", function() {
