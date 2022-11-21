@@ -56,7 +56,7 @@ In this way, on routing we retrieve all defined services with tag `DiTag.CONTROL
 
 
 ### `latency-express-v4`
-The change from the previous version is that we replace config method of Controller class to add parameter of Controller. 
+The change from the previous version is that we replace config method of Controller classes to add parameter of Controller. 
 Also, we replace Controller annotation to 4 annotations to GET, POST, PUT and DELETE (it could add more if we need on the future).
 This annotations now save data to configure Router.
 
@@ -74,10 +74,63 @@ But in any cases it is not sufficient to build robust testing by the moment.
 To conclude. On final version, we improve module importation and remove glob library of any scope. 
 It is important because to bundle app with `esbuild` generate a single file and cannot match any file. And It not worked with import dynamically.  
 
+
+### latency-nest
+
+TODO
+
 ## Monorepo. Nx vs Turborepo
+
+### Nx
+In this repo, we are using NX to manage monorepo.
+
+Key point, very complex to configure. 
+Documentation is very poor and not found many examples. 
+Finally I achieve to build a complete project with this tool.
+
+Exists 2 types of monorepositories:
+
+#### Integrated Repo
+
+- Allows create multiple apps with same package.json. This approach it’s perfect to microservices because share all node_modules. So, in principe this approach not ajust our necesities.
+- Not use NPM, Yarn or PNPM worspaces. it use a virtual workspaces.
+- Build with @nrwl/webpack. Result is a single index.js file with all libraries included inside.
+
+#### Packaged-Based Repo
+
+- This mode allows to create multiple independient packages.
+- Uses a NPM worksapces and have independient and extensible package.json.
+- Not have support to build. To can build app its necessary use tsc, @swc or other tool. Finally to build all server into a single file i used **Esbuild.**
+- Multiple workspaces (api, apps, packages)
+- With Esbuild we can link different packages and with nx graph we can show dependencies between apps and packages.
+
+It’s importat to emphasy that with a extra configuration it’s possible utilize Nx to manage multi-language repository. Though this tools was builded to manage node modules.
+
+### Turborepo
+
+Turborepo is an intelligent build system optimized for JavaScript and TypeScript codebases. 
+It enables a simply mode to manage monorepository.
+
+Documentation is very wide and exists multiple examples.
+
+With a installation give us a complete example with Next applications.
+
+It’s very similar to Nx but more modern.
+
+Only support to JS/TS projects. But it is possible create other project with package.json without dependencies.
 
 
 ## Dependency injection
+We are using DIOD because is simply and easy to configure and we can use autowiring and tags by default. 
+And other important thing is because not dirty our code with external libraries annotations our classes. Otherwise, we use our private annotations. 
 
+On typescript word exists multiple options like:
+- Inversify (https://github.com/inversify/InversifyJS): more powerfull. But, more complex to configure. Currently is most complet DI. It used by NestJs.
+- Node dependency injection (https://github.com/zazoomauro/node-dependency-injection)
+- tsyringe (https://github.com/microsoft/tsyringe)
+- Autofac (https://github.com/autofac/Autofac)
+- Ninject (https://github.com/ninject/Ninject)
 
 ## Transpiler. SWC vs Esbuild.
+
+TODO
