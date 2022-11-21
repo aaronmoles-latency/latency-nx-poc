@@ -4,7 +4,7 @@ GET http://localhost:3000/user
 
 > {%
 client.test("Request executed successfully", function() {
-    client.assert(response.body.data === 'user service', "Response is not correct");
+    client.assert(response.body.data.toLowerCase() === 'user service', "Response is not correct");
 });
 %}
 
@@ -13,7 +13,7 @@ GET http://localhost:3000/dashboard
 
 > {%
 client.test("Request executed successfully", function() {
-    client.assert(response.body.data === 'dashboard service', "Response is not correct");
+    client.assert(response.body.data.toLowerCase() === 'dashboard service', "Response is not correct");
 });
 %}
 
@@ -22,12 +22,21 @@ GET http://localhost:3000/auth
 
 > {%
 client.test("Request executed successfully", function() {
-    client.assert(response.body.data === 'auth service', "Response is not correct");
+    client.assert(response.body.data.toLowerCase() === 'auth service', "Response is not correct");
 });
 %}
 
 ### POST /auth
 POST http://localhost:3000/auth
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 201, "Response status is not 201");
+});
+%}
+
+### POST /user
+POST http://localhost:3000/user
 
 > {%
 client.test("Request executed successfully", function() {
