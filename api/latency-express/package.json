@@ -1,0 +1,28 @@
+{
+  "name": "latency-express",
+  "version": "0.0.0",
+  "description": "Test to express latency",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts --swc",
+    "build": "npx tsc && npx tsc-aliasy",
+    "bundle": "node build.js",
+    "test": "NODE_ENV=test jest",
+    "clean": "rm -r dist"
+  },
+  "author": "amoles",
+  "license": "ISC",
+  "dependencies": {
+    "diod": "2.0.0",
+    "express-server": "*",
+    "glob": "8.0.3",
+    "package-b": "*",
+    "reflect-metadata": "0.1.13"
+  },
+  "devDependencies": {
+    "@types/glob": "8.0.0",
+    "esbuild-jest": "0.5.0",
+    "esbuild-plugin-decorator": "0.4.0"
+  }
+}

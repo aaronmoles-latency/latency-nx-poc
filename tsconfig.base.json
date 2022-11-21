@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@latency/package-a": ["packages/package-a/index.ts"],
+      "@latency/express-server": ["packages/express-server/src/index.ts"]
+    }
+  }
+}
