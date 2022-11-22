@@ -77,7 +77,14 @@ It is important because to bundle app with `esbuild` generate a single file and 
 
 ### latency-nest
 
-TODO
+By the other hand, we wanted to try **NestJs** to compare with Express. We developed the same of last project `latency express` on less than half time. 
+You can watch the result on folder `latency-nest`.
+
+### 📝 Conclusions
+
+Express and NestJs are very different. Express only enable a few features to create your API and NestJS provides same that Express and a lot of features more above HTTP layer that extends API to next level.
+So, Express allow us to build a system with very flexibility, choosing tools or libraries that we want, while in NestJS requires that works like they propose. 
+Even though, in some cases we can extends NestJS with our implementations without problem. 
 
 ## Monorepo. Nx vs Turborepo
 
@@ -131,6 +138,23 @@ On typescript word exists multiple options like:
 - Autofac (https://github.com/autofac/Autofac)
 - Ninject (https://github.com/ninject/Ninject)
 
-## Transpiler. SWC vs Esbuild.
+## Transpiler
+In most cases, when project grows and have tons of code lines, compilation and transpiling becomes very slow and provide a bad developer experience. 
+Also, other processes like tests become a problem on CI/CD pipelines with expensive times. 
 
-TODO
+In this case, we are evaluate some tools to improve this experience and decrease time of execution.
+
+### @SWC
+We used to run and compile. Your behaviour is correct and works fine. It is faster than `tsc`. 
+To configure this transpiler is very tedious, we need some files more that are very similar to tsconfig.json. So, we would need to increase efforts to maintain a couple configuration files.
+
+Also, when use it to create bundle with **spack** it not works. 
+Maybe Eslint it’s better solution by the moment.
+
+### Esbuild
+This tool is key to build monorepo. It allows to transform typescript to js faster than tsc and create a complete small bundle that contains all code.
+On this way we can forget to copy node_modules folder on Docker image or target server to deploy system.
+
+Also, Esbuild has some tools to jest (esbuild-jest, to transpile code and test quickly) and runner to develop (`tsx`).
+This tools provides a better developer experience, and contribute to generate builds smaller than without tool.
+
